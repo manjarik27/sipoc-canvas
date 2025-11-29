@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Thinking SIPOC Canvas</title>
+    <title>Design Thinking SIPOC Grid</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -15,123 +15,175 @@
         .handwritten {
             font-family: 'Caveat', cursive;
         }
-        .card-shadow {
-            box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-        }
-        .card-shadow:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.1);
-        }
         .input-area {
-            background-image: linear-gradient(#e2e8f0 1px, transparent 1px);
+            background-image: linear-gradient(#f1f5f9 1px, transparent 1px);
             background-size: 100% 24px;
             line-height: 24px;
+        }
+        /* Number badge for steps */
+        .step-badge {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body class="p-4 md:p-8 min-h-screen text-slate-800 pb-20">
 
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-[1400px] mx-auto">
         
         <!-- Header Section -->
         <header class="mb-8 text-center">
-            <h1 class="text-4xl font-bold text-slate-900 mb-2">The Process Story Canvas</h1>
-            <p class="text-slate-600 text-lg">A human-centered approach to SIPOC (Suppliers, Inputs, Process, Outputs, Customers)</p>
-            <div class="mt-4 inline-flex items-center gap-2 bg-yellow-100 px-4 py-2 rounded-full text-yellow-800 border-2 border-yellow-200">
-                <i data-lucide="lightbulb" class="w-5 h-5"></i>
-                <span class="font-medium">Tip: Start from the right (The Humans) and work backwards!</span>
-            </div>
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">The Process Story Grid</h1>
+            <p class="text-slate-600 text-lg">Uncover the human story behind your process—connecting every action to the people and partners who make it possible.</p>
         </header>
 
-        <!-- Main Canvas Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-
-            <!-- COLUMN 1: SUPPLIERS -> PARTNERS -->
-            <div class="bg-white border-2 border-slate-200 rounded-xl p-4 card-shadow flex flex-col h-full">
-                <div class="flex items-center gap-2 mb-3 border-b-2 border-slate-100 pb-2">
-                    <div class="bg-purple-100 p-2 rounded-lg text-purple-600">
-                        <i data-lucide="users" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-lg">Partners</h2>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Suppliers</p>
-                    </div>
+        <!-- GRID HEADERS (Visible on Desktop) -->
+        <div class="hidden md:grid grid-cols-5 gap-4 mb-4 sticky top-0 bg-[#f8fafc] z-10 py-2 border-b-2 border-slate-200 shadow-sm">
+            <!-- Header 1 -->
+            <div class="flex flex-col gap-1 text-purple-700 p-2">
+                <div class="flex items-center gap-2">
+                    <div class="bg-purple-100 p-1.5 rounded-lg"><i data-lucide="users" class="w-5 h-5"></i></div>
+                    <div><h2 class="font-bold">Partners</h2><p class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Suppliers</p></div>
                 </div>
-                <div class="flex-grow">
-                    <p class="text-sm text-slate-600 italic mb-3">Who helps us make this happen?</p>
-                    <textarea class="w-full h-64 p-2 bg-purple-50 rounded-lg border border-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-300 resize-none handwritten text-xl text-purple-900 input-area" placeholder="• External Vendors&#10;• Internal Teams&#10;• Software Tools&#10;• Data Providers"></textarea>
-                </div>
+                <p class="text-xs text-slate-500 italic">Who helps us make this happen?</p>
             </div>
-
-            <!-- COLUMN 2: INPUTS -> INGREDIENTS -->
-            <div class="bg-white border-2 border-slate-200 rounded-xl p-4 card-shadow flex flex-col h-full">
-                <div class="flex items-center gap-2 mb-3 border-b-2 border-slate-100 pb-2">
-                    <div class="bg-blue-100 p-2 rounded-lg text-blue-600">
-                        <i data-lucide="package" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-lg">Ingredients</h2>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Inputs</p>
-                    </div>
+            <!-- Header 2 -->
+            <div class="flex flex-col gap-1 text-blue-700 p-2">
+                <div class="flex items-center gap-2">
+                    <div class="bg-blue-100 p-1.5 rounded-lg"><i data-lucide="package" class="w-5 h-5"></i></div>
+                    <div><h2 class="font-bold">Ingredients</h2><p class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Inputs</p></div>
                 </div>
-                <div class="flex-grow">
-                    <p class="text-sm text-slate-600 italic mb-3">What raw materials or info do we need?</p>
-                    <textarea class="w-full h-64 p-2 bg-blue-50 rounded-lg border border-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none handwritten text-xl text-blue-900 input-area" placeholder="• Raw Data&#10;• Creative Brief&#10;• User Requests&#10;• Necessary Equipment"></textarea>
-                </div>
+                <p class="text-xs text-slate-500 italic">What raw materials or info do we need?</p>
             </div>
-
-            <!-- COLUMN 3: PROCESS -> THE JOURNEY -->
-            <div class="bg-white border-2 border-slate-900 rounded-xl p-4 card-shadow flex flex-col h-full transform scale-105 z-10 shadow-xl">
-                <div class="flex items-center gap-2 mb-3 border-b-2 border-slate-100 pb-2">
-                    <div class="bg-slate-800 p-2 rounded-lg text-white">
-                        <i data-lucide="git-commit" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-lg">The Journey</h2>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Process</p>
-                    </div>
+            <!-- Header 3 (Center) -->
+            <div class="flex flex-col gap-1 text-slate-800 border-b-4 border-slate-800 pb-1 p-2 bg-slate-50 rounded-t-lg">
+                <div class="flex items-center gap-2 justify-center">
+                    <div class="bg-slate-800 text-white p-1.5 rounded-lg"><i data-lucide="git-commit" class="w-5 h-5"></i></div>
+                    <div><h2 class="font-bold">The Journey</h2><p class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Process Step</p></div>
                 </div>
-                <div class="flex-grow">
-                    <p class="text-sm text-slate-600 italic mb-3">What are the 5-7 key steps we take?</p>
-                    <textarea class="w-full h-64 p-2 bg-slate-50 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-400 resize-none handwritten text-xl text-slate-800 input-area" placeholder="1. Receive request&#10;2. Analyze needs&#10;3. Draft solution&#10;4. Review & Refine&#10;5. Deliver final value"></textarea>
-                </div>
+                <p class="text-xs text-slate-500 italic text-center">What is the specific action?</p>
             </div>
-
-            <!-- COLUMN 4: OUTPUTS -> ARTIFACTS -->
-            <div class="bg-white border-2 border-slate-200 rounded-xl p-4 card-shadow flex flex-col h-full">
-                <div class="flex items-center gap-2 mb-3 border-b-2 border-slate-100 pb-2">
-                    <div class="bg-green-100 p-2 rounded-lg text-green-600">
-                        <i data-lucide="gift" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-lg">Artifacts</h2>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Outputs</p>
-                    </div>
+            <!-- Header 4 -->
+            <div class="flex flex-col gap-1 text-green-700 p-2">
+                <div class="flex items-center gap-2">
+                    <div class="bg-green-100 p-1.5 rounded-lg"><i data-lucide="gift" class="w-5 h-5"></i></div>
+                    <div><h2 class="font-bold">Artifacts</h2><p class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Outputs</p></div>
                 </div>
-                <div class="flex-grow">
-                    <p class="text-sm text-slate-600 italic mb-3">What value do we actually create?</p>
-                    <textarea class="w-full h-64 p-2 bg-green-50 rounded-lg border border-green-100 focus:outline-none focus:ring-2 focus:ring-green-300 resize-none handwritten text-xl text-green-900 input-area" placeholder="• Finished Product&#10;• Signed Contract&#10;• Solved Ticket&#10;• Design Mockup"></textarea>
-                </div>
+                <p class="text-xs text-slate-500 italic">What value do we create here?</p>
             </div>
-
-            <!-- COLUMN 5: CUSTOMERS -> THE HUMANS -->
-            <div class="bg-white border-2 border-slate-200 rounded-xl p-4 card-shadow flex flex-col h-full">
-                <div class="flex items-center gap-2 mb-3 border-b-2 border-slate-100 pb-2">
-                    <div class="bg-orange-100 p-2 rounded-lg text-orange-600">
-                        <i data-lucide="heart" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-lg">The Humans</h2>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Customers</p>
-                    </div>
+            <!-- Header 5 -->
+            <div class="flex flex-col gap-1 text-orange-700 p-2">
+                <div class="flex items-center gap-2">
+                    <div class="bg-orange-100 p-1.5 rounded-lg"><i data-lucide="heart" class="w-5 h-5"></i></div>
+                    <div><h2 class="font-bold">The Humans</h2><p class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Customers</p></div>
                 </div>
-                <div class="flex-grow">
-                    <p class="text-sm text-slate-600 italic mb-3">Who receives the value? Who cares?</p>
-                    <textarea class="w-full h-64 p-2 bg-orange-50 rounded-lg border border-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-300 resize-none handwritten text-xl text-orange-900 input-area" placeholder="• End User&#10;• Stakeholder&#10;• Next Dept. Downstream&#10;• The Community"></textarea>
-                </div>
+                <p class="text-xs text-slate-500 italic">Who receives this piece of value?</p>
             </div>
+        </div>
 
+        <!-- ROW 1 (Start) -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 group">
+            <!-- Partner -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-purple-600 mb-1 block">Partners (Supplier)</span>
+                <textarea class="w-full h-36 p-3 bg-purple-50 rounded-lg border border-purple-100 focus:ring-2 focus:ring-purple-300 resize-none handwritten text-lg text-purple-900 input-area shadow-sm" placeholder="• External Vendors&#10;• Requesting Dept&#10;• The Customer (themselves)"></textarea>
+            </div>
+            <!-- Ingredient -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-blue-600 mb-1 block">Ingredients (Input)</span>
+                <textarea class="w-full h-36 p-3 bg-blue-50 rounded-lg border border-blue-100 focus:ring-2 focus:ring-blue-300 resize-none handwritten text-lg text-blue-900 input-area shadow-sm" placeholder="• User Request&#10;• Raw Data&#10;• Creative Brief&#10;• Trigger Event"></textarea>
+            </div>
+            <!-- Journey Step 1 -->
+            <div class="relative">
+                <div class="absolute -left-3 top-3 -ml-px md:ml-0 md:-left-4 bg-slate-800 text-white step-badge shadow-md z-10">1</div>
+                <span class="md:hidden font-bold text-slate-800 mb-1 ml-6 block">Step 1</span>
+                <textarea class="w-full h-36 p-3 pl-4 bg-white rounded-lg border-2 border-slate-300 focus:ring-2 focus:ring-slate-400 resize-none handwritten text-xl text-slate-900 input-area shadow-md" placeholder="1. Receive request..."></textarea>
+            </div>
+            <!-- Artifact -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-green-600 mb-1 block">Artifacts (Output)</span>
+                <textarea class="w-full h-36 p-3 bg-white rounded-lg border border-green-100 focus:ring-2 focus:ring-green-300 resize-none handwritten text-lg text-green-900 input-area shadow-sm"></textarea>
+            </div>
+            <!-- Human -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-orange-600 mb-1 block">The Humans (Customer)</span>
+                <textarea class="w-full h-36 p-3 bg-white rounded-lg border border-orange-100 focus:ring-2 focus:ring-orange-300 resize-none handwritten text-lg text-orange-900 input-area shadow-sm"></textarea>
+            </div>
+        </div>
+
+        <!-- ROW 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+            <div class="relative"><span class="md:hidden font-bold text-purple-600 mb-1 block">Partners</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-purple-100 focus:ring-2 focus:ring-purple-300 resize-none handwritten text-lg text-purple-900 input-area shadow-sm"></textarea></div>
+            <div class="relative"><span class="md:hidden font-bold text-blue-600 mb-1 block">Ingredients</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-blue-100 focus:ring-2 focus:ring-blue-300 resize-none handwritten text-lg text-blue-900 input-area shadow-sm"></textarea></div>
+            <div class="relative">
+                <div class="absolute -left-3 top-3 md:-left-4 bg-slate-200 text-slate-600 step-badge shadow-sm z-10">2</div>
+                <span class="md:hidden font-bold text-slate-800 mb-1 ml-6 block">Step 2</span>
+                <textarea class="w-full h-36 p-3 pl-4 bg-white rounded-lg border-2 border-slate-200 focus:ring-2 focus:ring-slate-400 resize-none handwritten text-xl text-slate-900 input-area shadow-md" placeholder="2. Analyze / Triage..."></textarea>
+            </div>
+            <div class="relative"><span class="md:hidden font-bold text-green-600 mb-1 block">Artifacts</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-green-100 focus:ring-2 focus:ring-green-300 resize-none handwritten text-lg text-green-900 input-area shadow-sm"></textarea></div>
+            <div class="relative"><span class="md:hidden font-bold text-orange-600 mb-1 block">Humans</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-orange-100 focus:ring-2 focus:ring-orange-300 resize-none handwritten text-lg text-orange-900 input-area shadow-sm"></textarea></div>
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+            <div class="relative"><span class="md:hidden font-bold text-purple-600 mb-1 block">Partners</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-purple-100 focus:ring-2 focus:ring-purple-300 resize-none handwritten text-lg text-purple-900 input-area shadow-sm"></textarea></div>
+            <div class="relative"><span class="md:hidden font-bold text-blue-600 mb-1 block">Ingredients</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-blue-100 focus:ring-2 focus:ring-blue-300 resize-none handwritten text-lg text-blue-900 input-area shadow-sm"></textarea></div>
+            <div class="relative">
+                <div class="absolute -left-3 top-3 md:-left-4 bg-slate-200 text-slate-600 step-badge shadow-sm z-10">3</div>
+                <span class="md:hidden font-bold text-slate-800 mb-1 ml-6 block">Step 3</span>
+                <textarea class="w-full h-36 p-3 pl-4 bg-white rounded-lg border-2 border-slate-200 focus:ring-2 focus:ring-slate-400 resize-none handwritten text-xl text-slate-900 input-area shadow-md" placeholder="3. Create / Draft..."></textarea>
+            </div>
+            <div class="relative"><span class="md:hidden font-bold text-green-600 mb-1 block">Artifacts</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-green-100 focus:ring-2 focus:ring-green-300 resize-none handwritten text-lg text-green-900 input-area shadow-sm"></textarea></div>
+            <div class="relative"><span class="md:hidden font-bold text-orange-600 mb-1 block">Humans</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-orange-100 focus:ring-2 focus:ring-orange-300 resize-none handwritten text-lg text-orange-900 input-area shadow-sm"></textarea></div>
+        </div>
+
+        <!-- ROW 4 -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+            <div class="relative"><span class="md:hidden font-bold text-purple-600 mb-1 block">Partners</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-purple-100 focus:ring-2 focus:ring-purple-300 resize-none handwritten text-lg text-purple-900 input-area shadow-sm"></textarea></div>
+            <div class="relative"><span class="md:hidden font-bold text-blue-600 mb-1 block">Ingredients</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-blue-100 focus:ring-2 focus:ring-blue-300 resize-none handwritten text-lg text-blue-900 input-area shadow-sm"></textarea></div>
+            <div class="relative">
+                <div class="absolute -left-3 top-3 md:-left-4 bg-slate-200 text-slate-600 step-badge shadow-sm z-10">4</div>
+                <span class="md:hidden font-bold text-slate-800 mb-1 ml-6 block">Step 4</span>
+                <textarea class="w-full h-36 p-3 pl-4 bg-white rounded-lg border-2 border-slate-200 focus:ring-2 focus:ring-slate-400 resize-none handwritten text-xl text-slate-900 input-area shadow-md" placeholder="4. Review & Refine..."></textarea>
+            </div>
+            <div class="relative"><span class="md:hidden font-bold text-green-600 mb-1 block">Artifacts</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-green-100 focus:ring-2 focus:ring-green-300 resize-none handwritten text-lg text-green-900 input-area shadow-sm"></textarea></div>
+            <div class="relative"><span class="md:hidden font-bold text-orange-600 mb-1 block">Humans</span><textarea class="w-full h-36 p-3 bg-white rounded-lg border border-orange-100 focus:ring-2 focus:ring-orange-300 resize-none handwritten text-lg text-orange-900 input-area shadow-sm"></textarea></div>
+        </div>
+
+        <!-- ROW 5 (End) -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+            <!-- Partner -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-purple-600 mb-1 block">Partners</span>
+                <textarea class="w-full h-36 p-3 bg-white rounded-lg border border-purple-100 focus:ring-2 focus:ring-purple-300 resize-none handwritten text-lg text-purple-900 input-area shadow-sm"></textarea>
+            </div>
+            <!-- Ingredient -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-blue-600 mb-1 block">Ingredients</span>
+                <textarea class="w-full h-36 p-3 bg-white rounded-lg border border-blue-100 focus:ring-2 focus:ring-blue-300 resize-none handwritten text-lg text-blue-900 input-area shadow-sm"></textarea>
+            </div>
+            <!-- Journey Step 5 -->
+            <div class="relative">
+                <div class="absolute -left-3 top-3 md:-left-4 bg-slate-800 text-white step-badge shadow-md z-10">5</div>
+                <span class="md:hidden font-bold text-slate-800 mb-1 ml-6 block">Step 5</span>
+                <textarea class="w-full h-36 p-3 pl-4 bg-white rounded-lg border-2 border-slate-300 focus:ring-2 focus:ring-slate-400 resize-none handwritten text-xl text-slate-900 input-area shadow-md" placeholder="5. Deliver Final Value..."></textarea>
+            </div>
+            <!-- Artifact -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-green-600 mb-1 block">Artifacts</span>
+                <textarea class="w-full h-36 p-3 bg-green-50 rounded-lg border border-green-100 focus:ring-2 focus:ring-green-300 resize-none handwritten text-lg text-green-900 input-area shadow-sm" placeholder="• Finished Product&#10;• Signed Contract&#10;• Solved Ticket"></textarea>
+            </div>
+            <!-- Human -->
+            <div class="relative">
+                <span class="md:hidden font-bold text-orange-600 mb-1 block">The Humans</span>
+                <textarea class="w-full h-36 p-3 bg-orange-50 rounded-lg border border-orange-100 focus:ring-2 focus:ring-orange-300 resize-none handwritten text-lg text-orange-900 input-area shadow-sm" placeholder="• End User&#10;• Stakeholder&#10;• The Community"></textarea>
+            </div>
         </div>
 
         <!-- Action Buttons -->
@@ -146,24 +198,28 @@
             </button>
         </div>
 
-        <!-- Mini Guide Section -->
+        <!-- Guide Section -->
         <div class="mt-12 bg-white rounded-xl p-6 border-2 border-slate-100">
             <h3 class="font-bold text-xl text-slate-800 mb-4 flex items-center gap-2">
                 <i data-lucide="compass" class="w-6 h-6 text-indigo-500"></i>
-                How to use this canvas
+                Recommended Workflow
             </h3>
-            <div class="grid md:grid-cols-3 gap-6 text-sm text-slate-600">
-                <div>
-                    <strong class="block text-slate-900 mb-1">1. Start with the Humans</strong>
-                    <p>Don't start with the process steps. Start by defining who receives the value. What is their pain point? What do they need?</p>
+            <div class="grid md:grid-cols-4 gap-6 text-sm text-slate-600">
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <strong class="block text-slate-900 mb-1">1. The Journey (Middle)</strong>
+                    <p>First, fill out the 5 center boxes (Steps 1-5). Describe the high-level process flow.</p>
                 </div>
-                <div>
-                    <strong class="block text-slate-900 mb-1">2. Define the Artifacts</strong>
-                    <p>Before you figure out <em>how</em> to make it, define <em>what</em> you are making. What tangible thing passes from you to the human?</p>
+                <div class="bg-orange-50 p-3 rounded-lg border border-orange-100">
+                    <strong class="block text-orange-900 mb-1">2. The End Goal (Row 5)</strong>
+                    <p>Go to the last row. Define the final Artifact and the Human who receives it. This anchors your value.</p>
                 </div>
-                <div>
-                    <strong class="block text-slate-900 mb-1">3. Map the Journey</strong>
-                    <p>Now, fill in the middle. Keep it high level (5-7 steps max). Design thinking is about the big picture flow, not the microscopic details.</p>
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-100">
+                    <strong class="block text-blue-900 mb-1">3. The Start Point (Row 1)</strong>
+                    <p>Go to the first row. Define the trigger Ingredient and the Partner who supplies it.</p>
+                </div>
+                <div class="p-3 rounded-lg border border-slate-100">
+                    <strong class="block text-slate-900 mb-1">4. Fill the Gaps</strong>
+                    <p>Fill in the remaining boxes for each step. What does Step 2 need? What does Step 3 produce?</p>
                 </div>
             </div>
         </div>
@@ -171,16 +227,10 @@
     </div>
 
     <script>
-        // Initialize Icons
         lucide.createIcons();
-
-        // Clear Function
         function clearCanvas() {
             if(confirm('Are you sure you want to clear your story canvas?')) {
-                const textareas = document.querySelectorAll('textarea');
-                textareas.forEach(textarea => {
-                    textarea.value = '';
-                });
+                document.querySelectorAll('textarea').forEach(t => t.value = '');
             }
         }
     </script>
